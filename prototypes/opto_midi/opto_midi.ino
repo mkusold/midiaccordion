@@ -50,7 +50,7 @@ void loop()
     {
       buttons[i].LastPushedTime = millis();
     }
-    handleResonance(buttons[i].Note, buttons[i].LastPushedTime);
+    handleResonance(buttons[i].CurrentState, buttons[i].Note, buttons[i].LastPushedTime);
     buttons[i].PreviousState = buttons[i].CurrentState;
   }
 }
@@ -78,11 +78,11 @@ bool midiLogic(bool buttonState, bool previousButtonState, int note)
   return false;
 }
 
-void handleResonance(int note, unsigned long lastPushedTime)
+void handleResonance(bool buttonState, int note, unsigned long lastPushedTime)
 {
   // if the note has been playing too long, turn it off
   // so it doesn't indefinitely gurgle in the background
-  if ((millis() - lastPushedTime) > RESONANCE_TIME_MS)
+  if (buttonState == HIGH && (millis() - lastPushedTime) > RESONANCE_TIME_MS)
   {
     MIDI.sendNoteOff(note, VELOCITY, CHANNEL);
   }
