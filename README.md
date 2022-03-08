@@ -46,7 +46,8 @@ Success: Open garageband and press the button. You should now be able to hear a 
 
 ### Opto
 
-Goal: Make sure we can use opto interrupters as input
+Goal: Make sure we can use opto interrupters as inputs.
+Success: Block space between opto-interrupters and hear different midi sounds.
 
 #### Resistance Calculations
 
